@@ -1,7 +1,7 @@
 {
-  "name": "project",
+  "name": "rdf-converter",
   "version": "1.0.0",
-  "description": "Project description",
+  "description": "A CLI tool to convert between RDF serializations",
   "main": "dist/cjs/index.js",
   "typings": "dist/types/index.d.ts",
   "author": "Alex Kreidler",
@@ -15,6 +15,9 @@
     "start": "node dist/cjs/index.js"
   },
   "dependencies": {
+    "commander": "^6.1.0",
+    "rdf-parse": "^1.5.0",
+    "rdf-serialize": "^1.0.0",
     "typescript": "^4.0.3"
   },
   "devDependencies": {
