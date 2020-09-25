@@ -8,7 +8,7 @@ import { createReadStream, createWriteStream, promises } from "fs"
 // this fixes a weird thing with importing in CJS mode
 const mkdir = promises.mkdir
 
-import { basename } from "path"
+import { dirname } from "path"
 
 export async function convert(source: string, dest: string) {
     console.log(`Converting from ${source} to ${dest}`)
@@ -22,7 +22,7 @@ export async function convert(source: string, dest: string) {
         path: source,
     })
 
-    mkdir(basename(dest), { recursive: true })
+    mkdir(dirname(dest), { recursive: true })
 
     const outStream = createWriteStream(dest, "utf-8")
     const outQuads = rdfSerialize.serialize(quadStream, { path: dest })
@@ -33,8 +33,8 @@ export async function convert(source: string, dest: string) {
         outQuads.on("end", () => {
             resolve()
         })
-        outQuads.on("error", () => {
-            reject()
+        outQuads.on("error", (err) => {
+            reject(err)
         })
     })
     console.log("Done!")
