@@ -1,0 +1,25 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "Project description",
+  "main": "dist/cjs/index.js",
+  "typings": "dist/types/index.d.ts",
+  "author": "Alex Kreidler",
+  "license": "MIT",
+  "scripts": {
+    "compile:esm": "tsc",
+    "watch:esm": "tsc -w",
+    "compile:cjs": "tsc -p tsconfig.cjs.build.json",
+    "watch:cjs": "tsc -w -p tsconfig.cjs.build.json",
+    "test": "jest",
+    "start": "node dist/cjs/index.js"
+  },
+  "dependencies": {
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.4.0"
+  }
+}
