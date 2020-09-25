@@ -4,6 +4,8 @@
   "description": "A CLI tool to convert between RDF serializations",
   "main": "dist/cjs/index.js",
   "typings": "dist/types/index.d.ts",
+  "module": "dist/esm/index.js",
+  "bin": "./index.js",
   "author": "Alex Kreidler",
   "license": "MIT",
   "scripts": {
@@ -11,8 +13,11 @@
     "watch:esm": "tsc -w",
     "compile:cjs": "tsc -p tsconfig.cjs.build.json",
     "watch:cjs": "tsc -w -p tsconfig.cjs.build.json",
+    "compile": "concurrently \"yarn compile:cjs\" \"yarn compile:esm\"",
+    "watch": "concurrently \"yarn watch:cjs\" \"yarn watch:esm\"",
     "test": "jest",
-    "start": "node dist/cjs/index.js"
+    "start": "node dist/cjs/index.js",
+    "postinstall": "yarn compile"
   },
   "dependencies": {
     "commander": "^6.1.0",
@@ -22,6 +27,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
+    "concurrently": "^5.3.0",
     "jest": "^26.4.2",
     "ts-jest": "^26.4.0"
   }
