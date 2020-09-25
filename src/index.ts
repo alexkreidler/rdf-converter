@@ -1,7 +1,3 @@
-// export function foo(): string {
-//     return "hi"
-// }
-
 import { program } from "commander"
 
 import rdfSerialize from "rdf-serialize"
@@ -9,7 +5,7 @@ import rdfParse from "rdf-parse"
 
 import { createReadStream, createWriteStream, promises } from "fs"
 
-// import { mkdir } from "fs/promises"
+// this fixes a weird thing with importing in CJS mode
 const mkdir = promises.mkdir
 
 import { basename } from "path"
@@ -29,29 +25,15 @@ program
             path: source,
         })
 
-        // console.log("Parse stream created")
-
         mkdir(basename(dest), { recursive: true })
-
-        // console.log("created dir")
 
         const outStream = createWriteStream(dest, "utf-8")
         const outQuads = rdfSerialize.serialize(quadStream, { path: dest })
 
-        // console.log("out streams created")
-
-        // outQuads.on("data", (quad) => {
-        //     console.log("got quad")
-        //     console.log(quad.toString())
-        // })
-
         outQuads.pipe(outStream)
-
-        // console.log("piping")
 
         await new Promise((resolve, reject) => {
             outQuads.on("end", () => {
-                // console.log("out done")
                 resolve()
             })
             outQuads.on("error", () => {
