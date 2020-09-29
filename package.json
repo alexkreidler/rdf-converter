@@ -16,8 +16,7 @@
     "compile": "concurrently \"yarn compile:cjs\" \"yarn compile:esm\"",
     "watch": "concurrently \"yarn watch:cjs\" \"yarn watch:esm\"",
     "test": "jest",
-    "start": "node dist/cjs/index.js",
-    "postinstall": "yarn compile"
+    "start": "node dist/cjs/index.js"
   },
   "dependencies": {
     "commander": "^6.1.0",
